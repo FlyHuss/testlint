@@ -3,9 +3,9 @@
 class test {
 public:
   int a;
-
-  test() : a(111){};
-
+  // clang-format off
+  test() :                 a(111){};
+  // clang-format on
   void fun(int c) {
     std::cout << "in test" << std::endl;
     int b = 222;
