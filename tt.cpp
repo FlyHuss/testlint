@@ -4,7 +4,7 @@ class test {
 public:
   int a;
   // clang-format off
-  test() :                 a(111){};
+     test() :                 a(111){};
   // clang-format on
   void fun(int c) {
     std::cout << "in test" << std::endl;
