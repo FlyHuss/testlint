@@ -13,7 +13,6 @@ namespace linttest {
       void fun(int c) {
         std::cout << "in test" << std::endl;
         int b = 222;
-        // lambda decl
         [c, b]() mutable {
           std::cout << c << std::endl;
           c += 1;
@@ -21,7 +20,7 @@ namespace linttest {
       };
     };
     // clang-format off
-  }
+  }   // namespace lintTest
   // clang-format on
 };   // namespace linttest
 

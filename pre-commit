@@ -1,25 +1,5 @@
 #!/bin/sh
 
-# format_file() {
-#   file = "${1}" info = 'clang-format -n $file'
-# #git add $file
-#       if  [ - n "$info" ];
-#    then echo "$info"
-#      exit 1
-# fi
-# }
-
-# STAGE_FILES=$(git diff --cached --name-only --diff-filter=ACM -- *.h *.m *.c)
-# if test ${#STAGE_FILES} -gt 0
-# then
-#     for FILE in $STAGE_FILES;
-# do
-# format_file "${FILE}"
-# done
-# fi
-
-# exit 0
-
 if git rev-parse --verify HEAD >/dev/null 2>&1; then
     against=HEAD
 else
@@ -27,39 +7,26 @@ else
     against=4b825dc642cb6eb9a060e54bf8d69288fbee4904
 fi
 
-# Redirect output to stderr.
-#exec 2>&1
-
 clangformat='./clang-format -n -style=file'
-#sum=0
-#filters='-build/include_order,-build/namespaces,-legal/copyright,-runtime/references'
 
 # for cpp
 info=""
 for file in $(git diff-index --name-status $against -- | grep -E '\.[ch](pp)?$' | awk '{print $2}'); do
-    #$cpplint --filter=$filters $file
     cmd="$clangformat $file"
     info="$info$($cmd 2>&1)"
-    #info="$info $info2"
     #echo $cmd
     #echo $info
-    #sum=$(expr ${sum} + $?)
 done
 
 tidy_file() {
     clangtidy="/Users/huweinan/sghwn2/llvm-project-llvmorg-8.0.1/build/bin/clang-tidy -checks=-*,readability-check_namespace_name -p=build/compile_commands.json --quiet"
     info2=""
     for file in $(git diff-index --name-status $against -- | grep -E '\.[ch](pp)?$' | awk '{print $2}'); do
-        #$cpplint --filter=$filters $file
         cmd2="$clangtidy $file"
         info2="$info2$($cmd2)"
-        #info2=$(echo $info2 | awk 'NR!=1')
-        #info="$info $info2"
         #echo $cmd2
         #echo $info2
-        #sum=$(expr ${sum} + $?)
     done
-    #info2=$(tail -n +2 $info2)
 
     if [ -z "$info2" ]; then
         exit 0

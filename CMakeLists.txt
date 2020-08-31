@@ -6,7 +6,6 @@ SET(CMAKE_CXX_COMPILER /Users/huweinan/sghwn2/llvm-project-llvmorg-8.0.1/build/b
 
 #头文件目录
 include_directories(/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/ /System/Volumes/Data/Library/Developer/CommandLineTools/usr/include/c++/v1 /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include)
-include_directories(/Users/huweinan/sghwn2/llvm-project-llvmorg-8.0.1/build/lib/clang/8.0.1/include)
 
 
 
